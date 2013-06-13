@@ -1,0 +1,23 @@
+{
+    "name":        "imbc/website-bundle",
+    "type":        "symfony-bundle",
+    "description": "Symfony 2 bundle for common website stuff",
+    "keywords":    ["website", "symfony"],
+    "homepage":    "http://github.com/imbc/WebsiteBundle",
+    "license":     "MIT",
+
+    "authors": [
+        {
+            "name": "touristtam",
+            "email": "tourist.tam@gmail.com"
+        }
+    ],
+
+    "autoload": {
+        "psr-0": {
+            "Imbc\\Bundle\\WebsiteBundle": ""
+        }
+    },
+
+    "target-dir": "Imbc/Bundle/WebsiteBundle"
+}

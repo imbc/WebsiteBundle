@@ -1,0 +1,8 @@
+parameters:
+    imbc.type.multiselect.class:  Imbc\WebsiteBundle\Form\Type\MultiSelectType
+
+services:
+    form.type.daterange:
+        class: %imbc.type.multiselect.class%
+        tags:
+            -  { name: form.type, alias: multiselect }

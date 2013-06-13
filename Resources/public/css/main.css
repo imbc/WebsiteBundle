@@ -1,0 +1,14 @@
+/*
+    Document   : main
+    Created on : 13-Apr-2013, 11:31:30
+    Author     : touristtam
+    Description:
+        Purpose of the stylesheet follows.
+*/
+root {
+	display: block;
+}
+
+.socials {
+	padding: 10px;
+}

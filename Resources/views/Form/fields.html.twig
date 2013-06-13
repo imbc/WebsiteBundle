@@ -1,0 +1,43 @@
+{% extends 'form_div_layout.html.twig' %}
+{#% extends '::base.html.twig' %#}
+
+{% block multiselect_widget %}
+    <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/jquery-1.9.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/jquery-ui.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/jquery.ui.widget.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/jquery.multiselect.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/jquery.multiselect.filter.min.js') }}"></script>
+{% spaceless %}
+    <select {{ block('widget_attributes') }} multiple="multiple" class="jquery-multiselect">
+        {% if empty_value is not none %}
+            <option {% if required %} disabled="disabled"{% if value is empty %} selected="selected"{% endif %}{% else %} value=""{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
+            {% set options = preferred_choices %}
+            {{ block('choice_widget_options') }}
+            {% if choices|length > 0 and separator is not none %}
+                <option disabled="disabled">{{ separator }}</option>
+            {% endif %}
+        {% endif %}
+        {% set options = choices %}
+        {{ block('choice_widget_options') }}
+    </select>
+{% endspaceless %}
+    <script>
+    $(document).ready(function(){
+    //$(function(){
+        $( '.jquery-multiselect' ).multiselect();
+    });
+    </script>
+{% endblock %}
+
+{#% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/jquery.multiselect.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/jquery.multiselect.filter.min.js') }}"></script>
+    <script>
+    $(function(){
+        $( 'jquery-multiselect' ).multiselect();
+    });
+    </script>
+{% endblock %#}
