@@ -15,9 +15,9 @@
 
     "autoload": {
         "psr-0": {
-            "Imbc\\Bundle\\WebsiteBundle": ""
+            "Imbc\\WebsiteBundle": ""
         }
     },
 
-    "target-dir": "Imbc/Bundle/WebsiteBundle"
+    "target-dir": "Imbc/WebsiteBundle"
 }
