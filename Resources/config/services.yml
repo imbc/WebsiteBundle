@@ -1,8 +1,29 @@
 parameters:
-    imbc.type.multiselect.class:  Imbc\WebsiteBundle\Form\Type\MultiSelectType
+    imbc.type.multiselect.class:              Imbc\WebsiteBundle\Form\Type\MultiSelectType
+    imbc.notification.class:                  Imbc\WebsiteBundle\Controller\NotificationController
+    imbc.twig.notification_extension.class: Imbc\WebsiteBundle\Twig\Extension\NotificationExtension
 
 services:
     form.type.daterange:
         class: %imbc.type.multiselect.class%
         tags:
             -  { name: form.type, alias: multiselect }
+
+    imbc.notify:
+        class: %imbc.notification.class%
+        arguments:
+            session: '@session'
+            defaults:
+                message: '%imbc.notify.message%'
+                title: '%imbc.notify.title%'
+                class: '%imbc.notify.class%'
+                type: '%imbc.notify.type%'
+                lifetime: '%imbc.notify.lifetime%'
+                click_to_close: '%imbc.notify.click_to_close%'
+
+    imbc.twig.message_extension:
+        class: %imbc.twig.notification_extension.class%
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: twig.extension }

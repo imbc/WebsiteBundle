@@ -22,6 +22,13 @@ class ImbcWebsiteExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration( $configuration, $configs );
 
+        $container->setParameter( 'imbc.notify.message', $config['message'] );
+        $container->setParameter( 'imbc.notify.title', $config['title'] );
+        $container->setParameter( 'imbc.notify.class', $config['class'] );
+        $container->setParameter( 'imbc.notify.type', $config['type'] );
+        $container->setParameter( 'imbc.notify.lifetime', $config['lifetime'] );
+        $container->setParameter( 'imbc.notify.click_to_close', $config['click_to_close'] );
+
         $loader = new Loader\YamlFileLoader( $container, new FileLocator( __DIR__ . '/../Resources/config' ) );
         $loader->load( 'services.yml' );
     }
