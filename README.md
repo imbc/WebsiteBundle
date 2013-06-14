@@ -15,26 +15,40 @@ add to your composer.json the follow:
 
 import js + css files from the bundle in your base template:
 
-``` css
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('bundles/imbcwebsite/css/main.css') }}" type="text/css" />
-            <link rel="stylesheet" href="{{ asset('bundles/imbcwebsite/css/bootstrap.css') }}" type="text/css" />
-            <link rel="stylesheet" href="{{ asset('bundles/imbcwebsite/css/bootstrap-responsive.min.css') }}" type="text/css" />
-            <link rel="stylesheet" href="{{ asset('bundles/imbcwebsite/css/font-awesome.min.css') }}" type="text/css" />
-            <link rel="stylesheet" href="{{ asset('bundles/imbcwebsite/css/jquery-ui-1.9.2.custom.css') }}" type="text/css" />
-            <link rel="stylesheet" href="{{ asset('bundles/imbcwebsite/css/jquery.multiselect.css') }}" type="text/css" />
-            <link rel="stylesheet" href="{{ asset('bundles/imbcwebsite/css/jquery.multiselect.filter.css') }}" type="text/css" />
-        {% endblock %}
+``` twig
+    {% block stylesheets %}
+        {% stylesheets 'bundles/imbcwebsite/css/*' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+    {{ notify_resources() }}
+</head>
 ```
 
-``` javascript
-        {% block javascript %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-            <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/jquery-ui-1.9.2.custom.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/jquery.ui.widget.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/jquery.multiselect.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/jquery.multiselect.filter.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/bootstrap.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/imbcwebsite/js/main.js') }}"></script>
-        {% endblock %}
+``` twig
+    <div id=”notify_container”></div>
+    {% block javascript %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        {% javascripts '@ImbcWebsiteBundle/Resources/public/js/*' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+    {{ notify_all( 'notify_container' ) }}
+</body>
 ```
+
+The notification logic is using (humane.js) [http://wavded.github.io/humane-js/]
+
+```
+imbc_website:
+    click_to_close: true
+    lifetime: 5000
+    message: 'this is a message'
+    title: 'this is a title'
+    type: 'flash'                   # default value
+    class: 'notice'                 # default value
+```
+
+some twig help are available for calling notification:
+ * {{ notify_all( 'notify_container' ) }}
+ * {{ notify_single( 'notify_container' ) }}
