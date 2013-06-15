@@ -1,6 +1,6 @@
 add to your composer.json the follow:
 
-```
+``` json
     "repositories": [
         { "type": "vcs", "url": "http://github.com/imbc/WebsiteBundle" }
     ],
@@ -50,5 +50,5 @@ imbc_website:
 ```
 
 some twig help are available for calling notification:
- * {{ notify_all( 'notify_container' ) }}
- * {{ notify_single( 'notify_container' ) }}
+ * ```{{ notify_all( 'notify_container' ) }}```
+ * ```{{ notify_single( 'notify_container' ) }}```

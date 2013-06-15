@@ -10,7 +10,7 @@ class MultiSelectType extends AbstractType
 {
     public function buildForm( FormBuilderInterface $builder, array $options )
     {
-        $builder->setAttribute( 'widget', 'multiselect');
+        $builder->setAttribute( 'widget', 'imbc_multiselect');
     }
 
     public function setDefaultOptions( OptionsResolverInterface $resolver )
@@ -27,6 +27,6 @@ class MultiSelectType extends AbstractType
 
     public function getName()
     {
-        return 'multiselect';
+        return 'imbc_multiselect';
     }
 }

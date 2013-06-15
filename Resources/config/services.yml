@@ -1,13 +1,10 @@
 parameters:
-    imbc.type.multiselect.class:              Imbc\WebsiteBundle\Form\Type\MultiSelectType
+    imbc.form.type.multiselect.class:              Imbc\WebsiteBundle\Form\Type\MultiSelectType
+    imbc.form.type.chosen.class:              Imbc\WebsiteBundle\Form\Type\ChosenType
     imbc.notification.class:                  Imbc\WebsiteBundle\Controller\NotificationController
     imbc.twig.notification_extension.class: Imbc\WebsiteBundle\Twig\Extension\NotificationExtension
 
 services:
-    form.type.daterange:
-        class: %imbc.type.multiselect.class%
-        tags:
-            -  { name: form.type, alias: multiselect }
 
     imbc.notify:
         class: %imbc.notification.class%
@@ -27,3 +24,18 @@ services:
             - '@service_container'
         tags:
             - { name: twig.extension }
+
+    imbc.form.type.multiselect:
+        class: %imbc.form.type.multiselect.class%
+        tags:
+            - { name: form.type, alias: imbc_multiselect }
+
+    imbc.form.type.chosen:
+        class: %imbc.form.type.chosen.class%
+        tags:
+            - { name: form.type, alias: imbc_chosen }
+
+    imbc.form.type.daterange:
+        class: %imbc.form.type.multiselect.class%
+        tags:
+            -  { name: form.type, alias: multiselect }
